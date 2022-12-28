@@ -20,13 +20,14 @@ pyftdi = ">=0.40.0"
 
 [[package]]
 name = "adafruit-circuitpython-amg88xx"
-version = "1.2.15"
+version = "1.2.18"
 description = "CircuitPython library for AMG88xx thermal camera."
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "adafruit-circuitpython-amg88xx-1.2.15.tar.gz", hash = "sha256:d7162aa2d06336619dddd00076af88e4c539346ba1480108543ab5893fb7f88a"},
+    {file = "adafruit-circuitpython-amg88xx-1.2.18.tar.gz", hash = "sha256:9096ec5771fde818777214e57f3c095f269a3d5adb1eb78891513be7e309be37"},
+    {file = "adafruit_circuitpython_amg88xx-1.2.18-py3-none-any.whl", hash = "sha256:b272092294aae1d12fb35f76742cc7ddebd545577cd39419b3c7c7ae02a20e04"},
 ]
 
 [package.dependencies]
@@ -465,4 +466,4 @@ dev = ["black (>=19.3b0)", "pytest (>=4.6.2)"]
 [metadata]
 lock-version = "2.0"
     python-versions = ">=3.9,<3.12"
-content-hash = "b680d9f4f93219fa122aada64d6f74af18e018a05bb4f4d5d5a0caa8da7a48ba"
+content-hash = "5520bbd58c2bff7d3b2f9ef5e0d914f7653735460f7ef5406d93d89f9b1a79ec"
