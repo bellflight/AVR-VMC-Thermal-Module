@@ -4,7 +4,7 @@ import time
 import adafruit_amg88xx
 import board
 from bell.avr.mqtt.client import MQTTModule
-from bell.avr.mqtt.payloads import AvrThermalReadingPayload
+from bell.avr.mqtt.payloads import AVRThermalReading
 from loguru import logger
 
 
@@ -31,9 +31,7 @@ class ThermalModule(MQTTModule):
         base64_encoded = base64.b64encode(reading)
         base64_string = base64_encoded.decode("utf-8")
 
-        self.send_message(
-            "avr/thermal/reading", AvrThermalReadingPayload(data=base64_string)
-        )
+        self.send_message("avr/thermal/reading", AVRThermalReading(data=base64_string))
 
     def run(self) -> None:
         self.run_non_blocking()
