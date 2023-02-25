@@ -1,10 +1,10 @@
 import base64
-import time
 
 import adafruit_amg88xx
 import board
-from bell.avr.mqtt.client import MQTTModule
+from bell.avr.mqtt.module import MQTTModule
 from bell.avr.mqtt.payloads import AVRThermalReading
+from bell.avr.utils.decorators import run_forever
 from loguru import logger
 
 
@@ -17,7 +17,8 @@ class ThermalModule(MQTTModule):
         self.amg = adafruit_amg88xx.AMG88XX(i2c)
         logger.success("Connected to thermal camera!")
 
-    def request_thermal_reading(self) -> None:
+    @run_forever(period=0.2)
+    def thermal_reading(self) -> None:
         reading = bytearray(64)
         i = 0
 
@@ -35,10 +36,7 @@ class ThermalModule(MQTTModule):
 
     def run(self) -> None:
         self.run_non_blocking()
-
-        while True:
-            self.request_thermal_reading()
-            time.sleep(0.2)
+        self.thermal_reading()
 
 
 if __name__ == "__main__":
