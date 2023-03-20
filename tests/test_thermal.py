@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, List
 
 import pytest
+from bell.avr.mqtt.payloads import AVRThermalReading
 from pytest_mock.plugin import MockerFixture
 
 if TYPE_CHECKING:
@@ -35,8 +36,8 @@ def test_request_thermal_reading(
     )
 
     # run function and check output
-    thermal_module.request_thermal_reading()
+    thermal_module.thermal_reading()
     thermal_module.send_message.assert_called_once_with(
         "avr/thermal/reading",
-        {"data": output_data},
+        AVRThermalReading(data=output_data),
     )
