@@ -5,8 +5,8 @@ WORKDIR /work
 COPY pyproject.toml pyproject.toml
 COPY poetry.lock poetry.lock
 
-RUN python -m pip install poetry \
- && poetry export -o requirements.txt
+RUN python -m pip install poetry
+RUN poetry export -o requirements.txt
 
 FROM docker.io/library/python:3.11-bullseye
 
