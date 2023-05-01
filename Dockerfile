@@ -2,10 +2,11 @@ FROM docker.io/library/python:3.11 AS poetry-exporter
 
 WORKDIR /work
 
+RUN python -m pip install poetry
+
 COPY pyproject.toml pyproject.toml
 COPY poetry.lock poetry.lock
 
-RUN python -m pip install poetry
 RUN poetry export -o requirements.txt
 
 FROM docker.io/library/python:3.11-bullseye
