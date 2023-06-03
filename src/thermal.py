@@ -1,10 +1,10 @@
-import base64
-
 import adafruit_amg88xx
 import board
+import numpy as np
 from bell.avr.mqtt.module import MQTTModule
 from bell.avr.mqtt.payloads import AVRThermalReading
 from bell.avr.utils.decorators import run_forever
+from bell.avr.utils.images import serialize_image
 from loguru import logger
 
 
@@ -19,20 +19,8 @@ class ThermalModule(MQTTModule):
 
     @run_forever(period=0.2)
     def thermal_reading(self) -> None:
-        reading = bytearray(64)
-        i = 0
-
-        for row in self.amg.pixels:
-            for pix in row:
-                pixasint = round(pix)
-                bpix = pixasint.to_bytes(1, "big")
-                reading[i] = bpix[0]
-                i += 1
-
-        base64_encoded = base64.b64encode(reading)
-        base64_string = base64_encoded.decode("utf-8")
-
-        self.send_message("avr/thermal/reading", AVRThermalReading(data=base64_string))
+        image_data = serialize_image(np.array(self.amg.pixels))
+        self.send_message("avr/thermal/reading", AVRThermalReading(**image_data))
 
     def run(self) -> None:
         self.run_non_blocking()
