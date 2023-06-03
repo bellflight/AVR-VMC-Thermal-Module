@@ -39,5 +39,5 @@ def test_request_thermal_reading(
     thermal_module.thermal_reading()
     thermal_module.send_message.assert_called_once_with(
         "avr/thermal/reading",
-        AVRThermalReading(data=output_data),
+        AVRThermalReading(data=output_data, shape=[8, 8], compressed=False),
     )
