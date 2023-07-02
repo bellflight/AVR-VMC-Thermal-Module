@@ -10,21 +10,22 @@
 [tool.poetry.dependencies]
     python                         = ">=3.9,<3.12"
     adafruit-circuitpython-amg88xx = "1.2.20"
-    loguru                         = "^0.6.0"
-    bell-avr-libraries             = "0.2.0a2"
+    loguru                         = "0.7.0"
+    bell-avr-libraries             = "0.2.0a4"
     # https://github.com/NVIDIA/jetson-gpio/issues/79
-    jetson-gpio                    = { version = "!=2.1.0", markers = "sys_platform == 'linux'" }
+    jetson-gpio = { version = "!=2.1.0", markers = "sys_platform == 'linux'" }
 
 [tool.poetry.group.dev.dependencies]
-    pre-commit  = "^3.3.2"
-    pytest      = "^7.3.1"
-    pytest-mock = "^3.10.0"
-    pytest-cov  = "^4.1.0"
+    pre-commit  = "3.3.3"
+    pytest      = "7.4.0"
+    pytest-mock = "3.11.1"
+    pytest-cov  = "4.1.0"
 
 [tool.pyright]
-    typeCheckingMode = "basic"
-    venvPath         = "."
-    venv             = ".venv"
+    typeCheckingMode           = "basic"
+    venvPath                   = "."
+    venv                       = ".venv"
+    reportMissingParameterType = true
 
 [tool.ruff]
     ignore = ["E501"]
